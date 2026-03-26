@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大原の里 — 京都大原 温泉民宿</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400&family=Shippori+Mincho+B1:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Compiled CSS (scss/style.scss → css/style.css) -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+  <!-- ======================================================
+       NAVIGATION
+  ====================================================== -->
+  <nav class="site-nav" id="siteNav">
+    <a href="#hero" class="nav-logo"><img src=".//images/logo.png" alt="大原の里"></a>
+    <ul class="nav-links">
+      <li><a href="#about">旅館について</a></li>
+      <li><a href="#onsen">温泉</a></li>
+      <li><a href="#cuisine">料理</a></li>
+      <li><a href="#access">アクセス</a></li>
+    </ul>
+    <a href="#reserve" class="nav-cta">ご予約</a>
+  </nav>
+
+
+  <!-- ======================================================
+       HERO
+  ====================================================== -->
+  <section id="hero">
+
+    <!-- SWAP: replace background-image in .hero-bg in CSS, or set inline below -->
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-logo">
+      <div id="logo-ja"><img src="./images/logo.png" alt=""></div>
+      <div class="hero-rule" id="heroRule"></div>
+      <div id="logo-en">Ohara no Sato</div>
+    </div>
+
+    <p id="hero-tagline">京都大原の山里に息づく、百年の静寂。</p>
+    <div id="scroll-hint">Scroll</div>
+
+  </section>
+
+
+  <!-- ======================================================
+       ABOUT
+  ====================================================== -->
+  <section id="about">
+
+    <div class="text-col reveal">
+      <span class="section-eyebrow">About / 旅館について</span>
+      <div class="ruled-bar"></div>
+      <h2 class="section-title">山里に佇む、<br>静かな宿</h2>
+      <p class="section-body">
+        京都の北東、三千院や寂光院で知られる大原の里。
+        澄んだ空気と豊かな緑に包まれたこの地に、私たちは静かに佇んでいます。<br><br>
+        百年以上にわたって受け継いできた味噌の文化を守りながら、
+        旬の食材と大原の温泉で、ただ休むということの深い贅沢さをお届けします。
+      </p>
+    </div>
+
+    <div class="img-col reveal">
+      <div class="about-img-frame">
+        <!-- SWAP: replace src with your ryokan exterior photo -->
+        <img src="./images/01.jpg" alt="大原の里 外観" loading="lazy">
+      </div>
+      <div class="about-accent-box"></div>
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================
+       ONSEN
+  ====================================================== -->
+  <section id="onsen">
+
+    <!-- SWAP: replace background-image in .onsen-bg in CSS, or set inline below -->
+    <div class="onsen-bg" id="onsenBg"></div>
+    <div class="onsen-overlay"></div>
+
+    <div class="onsen-content">
+      <span class="section-eyebrow reveal">Onsen / 温泉</span>
+      <h2 class="onsen-title reveal">大原の湯</h2>
+      <div class="onsen-hr reveal"></div>
+      <p class="onsen-body reveal">
+        京都盆地の北東、地下1,175mより湧き出る大原温泉。
+        弱アルカリ性の泉質は肌をやわらかく整え、
+        近畿でも稀少なラドンを含む療養の湯です。<br><br>
+        露天五右衛門風呂では、大原の森を肌で感じながら、
+        ただ、時間が流れるのを感じてください。
+      </p>
+      <div class="onsen-stats reveal">
+        <div class="onsen-stat">
+          <strong>1,175 m</strong>
+          <span>湧出深度</span>
+        </div>
+        <div class="onsen-stat">
+          <strong>120 L/min</strong>
+          <span>湧出量</span>
+        </div>
+        <div class="onsen-stat">
+          <strong>27.9 ℃</strong>
+          <span>源泉温度</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================
+       CUISINE
+  ====================================================== -->
+  <section id="cuisine">
+
+    <div class="text-col reveal">
+      <span class="section-eyebrow">Cuisine / 料理</span>
+      <div class="ruled-bar"></div>
+      <h2 class="section-title">大原の恵みを<br>いただく</h2>
+      <p class="section-body">
+        百年以上続く自家製の手前味噌は、大原のおいしい水と厳選した大豆だけで仕込んだ、当宿の魂。
+        大豆・米麹・塩のみ、添加物一切なしの、昔ながらのひと皿です。<br><br>
+        その味噌を使った鍋料理をはじめ、旬の京野菜と地の食材を丁寧に仕立てた料理で、
+        大原の四季を召し上がっていただけます。
+      </p>
+      <ul class="menu-list">
+        <li>元祖味噌鍋（3種の味噌をブレンド）</li>
+        <li>ぼたん鍋（丹波篠山産猪肉×特製味噌）</li>
+        <li>コラーゲン味噌鍋（女性に人気）</li>
+        <li>京地鶏すき焼き</li>
+      </ul>
+    </div>
+
+    <div class="img-col reveal">
+      <div class="cuisine-grid">
+        <div class="main-img">
+          <!-- SWAP: -->
+          <img src="./images/m_01.jpg" alt="大原の里 料理" loading="lazy">
+        </div>
+        <div class="sub-img">
+          <!-- SWAP: -->
+          <img src="./images/m_02.jpg" alt="大原の里 料理" loading="lazy">
+        </div>
+        <div class="sub-img">
+          <!-- SWAP: -->
+          <img src="./images/m_03.jpg" alt="大原の里 味噌鍋" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================
+       MISO  — dark interlude
+  ====================================================== -->
+  <section id="miso">
+    <div class="miso-bg"></div>
+
+    <span class="section-eyebrow reveal">Specialty / 大原の味噌</span>
+    <p class="miso-quote reveal">「&emsp;味噌と会話しながら、百年を仕込む。&emsp;」</p>
+    <!-- <p class="miso-quote reveal">味噌と会話しながら、<br>百年を仕込む。</p> -->
+    <div class="miso-rule reveal"></div>
+    <p class="miso-body reveal">
+      大豆・米麹・塩のみを原材料に、職人が昔ながらの製法でじっくりと仕込む自家製味噌。
+      辛口の1年味噌、まろやかな2年味噌、伯方の塩を使ったコクある塩味噌など、
+      大原の土と水が育てた、百年のひと匙です。
+    </p>
+
+  </section>
+
+
+  <!-- ======================================================
+       ACCESS
+  ====================================================== -->
+  <section id="access">
+
+    <div class="access-bg"></div>
+
+    <div class="access-header reveal">
+      <span class="section-eyebrow">Access / アクセス</span>
+      <h2 class="section-title">大原への道のり</h2>
+    </div>
+
+    <div class="access-grid">
+
+      <div class="access-item reveal">
+        <h4>By Bus / バス</h4>
+        <strong>京都駅より</strong>
+        <p>
+          京都バス「大原行き」乗車<br>
+          終点「大原」バス停下車、
+          徒歩約15分
+        </p>
+      </div>
+
+      <div class="access-item reveal">
+        <h4>By Car / お車</h4>
+        <strong>京都東インターより</strong>
+        <p>
+          三条方面へ → 北白川通りを北上<br>
+          花園橋から国道367号線へ
+        </p>
+      </div>
+
+      <div class="access-item reveal">
+        <h4>Shuttle / 送迎</h4>
+        <strong>大原バス停まで</strong>
+        <p>
+          チェックイン開始（15:30）以降、<br>
+          ご要望に応じて送迎いたします
+        </p>
+      </div>
+
+      <div class="access-item reveal">
+        <h4>Address / 住所</h4>
+        <strong>〒601-1241</strong>
+        <p>
+          京都府京都市左京区大原<br>
+          Tel. 075-744-XXXX
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================================================
+       RESERVE CTA
+  ====================================================== -->
+  <section id="reserve">
+    <div class="reserve-card">
+      <p class="reserve-en reveal">Reservations</p>
+      <h2 class="reserve-ja reveal">ご予約・お問い合わせ</h2>
+      <a href="" class="btn-reserve reveal" target="_blank" rel="noopener noreferrer">ご予約はこちら</a>
+    </div>
+  </section>
+
+
+  <!-- ======================================================
+       FOOTER
+  ====================================================== -->
+  <footer class="site-footer">
+
+    <div>
+      <div class="footer-brand-name"><img src="./images/logo.png" alt=""></div>
+      <div class="footer-brand-en">Ohara no Sato</div>
+      <p class="footer-tagline">
+        京都大原の山里に息づく、<br>百年の静寂をお届けする宿。
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-col-title">Navigation</p>
+      <a href="#about">旅館について</a>
+      <a href="#onsen">温泉</a>
+      <a href="#cuisine">料理</a>
+      <a href="#access">アクセス</a>
+      <a href="#reserve">ご予約</a>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-col-title">Information</p>
+      <p>チェックイン　15:30 〜</p>
+      <p>チェックアウト　〜 10:00</p>
+      <p style="margin-top:0.8rem;">日帰り温泉コースも承っております</p>
+      <p>京都府京都市左京区大原</p>
+    </div>
+
+  </footer>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 大原の里 Ohara no Sato — All rights reserved.</p>
+  </div>
+
+
+  <!-- ======================================================
+       GSAP
+  ====================================================== -->
+  <!-- ======================================================
+       GSAP (CDN) + 外部JS
+  ====================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

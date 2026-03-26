@@ -1,0 +1,934 @@
+// ============================================================
+//  大原の里 — style.scss
+//  コンパイル: npx sass scss/style.scss css/style.css --watch
+// ============================================================
+
+// ------------------------------------------------------------
+//  VARIABLES
+// ------------------------------------------------------------
+$ink: #1a1815;
+$parchment: #f5f1e9;
+$cream: #edeade;
+$gold: #9a8460;
+$gold-light: #c4aa7a;
+$gray: #8a8278;
+$gray-light: #cdc8be;
+
+$font-ja: 'Shippori Mincho B1', 'Noto Serif JP', serif;
+$font-en: 'Cormorant Garamond', Georgia, serif;
+$ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+// ------------------------------------------------------------
+//  RESET & BASE
+// ------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  // background: $parchment;
+  // background: $ink;
+  background: #000;
+  color: $ink;
+  font-family: $font-ja;
+  font-weight: 400;
+  line-height: 1.9;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+// ------------------------------------------------------------
+//  NAVIGATION
+// ------------------------------------------------------------
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: 1.6rem 3.5rem;
+
+  // 1. 本体のふわっとした変化（Paddingや背景用）
+  transition:
+    padding 0.5s $ease,
+    background 0.5s $ease,
+    border-color 0.5s $ease;
+
+  // 2. リンク部分（通常時の設定と「ルール」）
+  .nav-links {
+    opacity: 1;
+    color: $gray;
+    // ★ここに transition を書くことで、消える時も戻る時も「ふわっ」とする！
+    transition: opacity 0.5s $ease, color 0.5s $ease;
+
+    &:hover {
+      color: $ink;
+    }
+  }
+
+  // 3. スクロールした時の「結果」だけをここにまとめる
+  &.is-scrolled {
+    .nav-logo {
+      color: $ink;
+    }
+
+    .nav-links {
+      opacity: 0; // スクロールしたら透明にする命令
+    }
+
+    .nav-cta {
+      color: $gold;
+      border-color: $gold;
+    }
+  }
+}
+
+
+.nav-logo {
+  // font-family: $font-ja;
+  // font-size: 1.05rem;
+  // font-weight: 700;
+  // letter-spacing: 0.18em;
+  // color: #fff;
+  // transition: color 0.4s;
+
+  width: 90px;
+  min-width: 90px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.8rem;
+
+  padding-top: 20px;
+
+  a {
+    font-family: $font-en;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(#fff, 0.8);
+    position: relative;
+    transition: color 0.3s;
+
+    writing-mode: vertical-rl;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0; // 上から
+      bottom: 0; // 下まで（これで縦の長さが決まる）
+      right: -5px; // 右端から少し外側に（距離は好きに調整してな）
+      width: 1px; // 横幅を1pxにして「線」にする
+      background: $gold-light;
+
+      // 縦方向に伸ばしたいから scaleY を使う
+      transform: scaleY(0);
+      transform-origin: top; // 上から下へ伸びるように
+      transition: transform 0.35s $ease;
+    }
+
+    &:hover::after {
+      transform: scaleY(1); // 100%の長さになる
+    }
+  }
+}
+
+.nav-cta {
+  font-family: $font-en;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: $gold-light;
+  border: 1px solid rgba($gold-light, 0.6);
+  padding: 0.55rem 1.4rem;
+  transition: all 0.35s $ease;
+  // opacity: 1;
+
+  &:hover {
+    background: $gold-light;
+    color: $parchment;
+    border-color: $gold-light;
+  }
+}
+
+// ------------------------------------------------------------
+//  HERO
+// ------------------------------------------------------------
+#hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #000
+}
+
+.hero-bg {
+  position: absolute;
+  inset: -25%;
+  // SWAP: 自前の画像パスに差し替え
+  background-image: url('../images/03.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #000;
+  background: transparent;
+  z-index: 2; //追記
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(#000, 1) 0%,
+        rgba(#000, 0.5) 50%,
+        rgba(#000, 1) 90%);
+    z-index: 3; //追記
+  }
+
+  // background: linear-gradient(180deg,
+  //     rgba(#0f0d0b, 0.20) 0%,
+  //     rgba(#0f0d0b, 0.55) 55%,
+  //     rgba(#0f0d0b, 0.75) 100%);
+
+  pointer-events: none;
+}
+
+.hero-logo {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: $parchment;
+}
+
+#logo-ja {
+
+  // font-family: $font-ja;
+  // font-size: clamp(3.5rem, 9vw, 6.5rem);
+  // font-weight: 700;
+  // letter-spacing: 0.35em;
+  // line-height: 1;
+  // text-shadow: 0 4px 40px rgba(#000, 0.25);
+
+  width: 20vw;
+  min-width: 200px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.hero-rule {
+  width: 0; // GSAPが50pxにアニメート
+  height: 1px;
+  background: $gold-light;
+  margin: 1.4rem auto;
+}
+
+#logo-en {
+  font-family: $font-en;
+  font-size: clamp(0.6rem, 1.4vw, 0.82rem);
+  font-weight: 300;
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+  color: $gold-light;
+}
+
+#hero-tagline {
+  position: absolute;
+  bottom: 12vh;
+  z-index: 2;
+  font-size: clamp(0.68rem, 1.3vw, 0.82rem);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  color: rgba($parchment, 0.65);
+}
+
+#scroll-hint {
+  position: absolute;
+  bottom: 3.5vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $font-en;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba($parchment, 0.45);
+
+  &::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(to bottom, rgba($parchment, 0.5), transparent);
+    animation: scrollLine 2.2s ease-in-out infinite;
+  }
+}
+
+@keyframes scrollLine {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(0.8) translateY(0);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scaleY(1.1) translateY(4px);
+  }
+}
+
+// ------------------------------------------------------------
+//  SECTION SHARED
+// ------------------------------------------------------------
+.section-eyebrow {
+  display: block;
+  font-family: $font-en;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 1.6rem;
+}
+
+.section-title {
+  font-family: $font-ja;
+  font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.8rem;
+  // color: $cream;
+}
+
+#about .section-title,
+#cuisine .section-title {
+  color: $cream;
+}
+
+.section-body {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 2.2;
+  color: $gray;
+}
+
+.ruled-bar {
+  width: 0; // GSAPがアニメート
+  height: 1px;
+  background: $gold;
+  margin-bottom: 2rem;
+  transform-origin: left;
+}
+
+// GSAPが使うリビール基底スタイル
+.reveal {
+  opacity: 0;
+  transform: translateY(42px);
+}
+
+// ------------------------------------------------------------
+//  ABOUT
+// ------------------------------------------------------------
+#about {
+  padding: 10rem 8vw;
+  display: flex;
+  align-items: center;
+  gap: 7vw;
+  background-color: #000;
+
+  .text-col {
+    flex: 0 0 44%;
+  }
+
+  .img-col {
+    flex: 1;
+    position: relative;
+  }
+}
+
+.about-img-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  max-height: 580px;
+
+  img {
+    transition: transform 0.8s $ease;
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+  }
+}
+
+.about-accent-box {
+  position: absolute;
+  bottom: -1.8rem;
+  right: -1.8rem;
+  width: 65%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid rgba($gold, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+// ------------------------------------------------------------
+//  ONSEN — full-width parallax panel
+// ------------------------------------------------------------
+#onsen {
+  position: relative;
+  height: 88vh;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.onsen-bg {
+  position: absolute;
+  inset: -25%;
+  background-image: url('../images/goemon.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.onsen-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 10, 8, 0.62);
+
+  background: linear-gradient(180deg,
+      rgba(#000, 1) 0%,
+      rgba(#000, 0.5) 20%,
+      rgba(#000, 0.5) 80%,
+      rgba(#000, 1) 100%);
+}
+
+.onsen-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: $parchment;
+  max-width: 680px;
+  padding: 0 2rem;
+
+  .section-eyebrow {
+    color: $gold-light;
+    margin-bottom: 1rem;
+  }
+}
+
+.onsen-title {
+  font-family: $font-ja;
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  margin-bottom: 1.6rem;
+  color: $parchment;
+}
+
+.onsen-hr {
+  width: 40px;
+  height: 1px;
+  background: $gold-light;
+  margin: 0 auto 1.8rem;
+}
+
+.onsen-body {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 2.3;
+  color: rgba($parchment, 0.72);
+  max-width: 50ch;
+  margin: 0 auto 2.8rem;
+}
+
+.onsen-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3.5rem;
+}
+
+.onsen-stat {
+  strong {
+    display: block;
+    font-family: $font-en;
+    font-size: 1.55rem;
+    font-weight: 300;
+    color: $gold-light;
+    letter-spacing: 0.04em;
+  }
+
+  span {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: rgba($parchment, 0.45);
+  }
+}
+
+// ------------------------------------------------------------
+//  CUISINE
+// ------------------------------------------------------------
+#cuisine {
+  padding: 10rem 8vw;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 7vw;
+
+  .text-col {
+    flex: 0 0 44%;
+  }
+
+  .img-col {
+    flex: 1;
+  }
+}
+
+.cuisine-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.7rem;
+
+  .main-img {
+    grid-column: span 2;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .sub-img {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  img {
+    transition: transform 0.7s $ease;
+  }
+
+  .main-img:hover img,
+  .sub-img:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.menu-list {
+  margin-top: 1.8rem;
+
+  li {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 2.8;
+    color: $gray;
+    border-bottom: 1px solid $cream;
+    padding-left: 0.5rem;
+    position: relative;
+
+    &::before {
+      content: '─';
+      position: absolute;
+      left: -1rem;
+      color: $gold;
+      font-size: 0.7rem;
+    }
+  }
+}
+
+// ------------------------------------------------------------
+//  MISO — dark interlude
+// ------------------------------------------------------------
+#miso {
+  // background: $ink;
+  padding: 9rem 2rem;
+  overflow: hidden;
+
+  .section-eyebrow {
+    color: $gold;
+  }
+}
+
+#miso {
+  position: relative; // 背景を固定するために必要
+  margin: 5%;
+  padding: 12rem 2rem; // 上下の余白（響子のデザインに合わせて調整してな）
+  text-align: center;
+  overflow: hidden;
+  color: #fff; // 背景が暗いなら文字は白系が見やすいで！
+
+  .miso-bg {
+    position: absolute;
+    inset: 0;
+    // z-index: -1; // 文字より後ろに配置
+
+    width: 100%; // ← 念のため追加
+    height: 100%; // ← 念のため追加
+
+    // ★さっき見つけたURLをここに！
+    background-image: url('../images/miso.jpg');
+    background-size: 110%;
+    // background-position: left 28%;
+
+    // ★【新設】茶色いドットの層
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   inset: 0;
+    //   z-index: 1; // 写真の上
+
+    //   // ここでドットパターンを作る（CSSグラデーションの裏技！）
+    //   background-image:
+    //     radial-gradient(rgba(#8B4513, 0.4) 20%, transparent 20%), // #8B4513は茶色
+    //     radial-gradient(rgba(#8B4513, 0.4) 20%, transparent 20%);
+    //   background-size: 20px 20px; // ドットの大きさ（ここを調整！）
+    //   background-position: 0 0, 10px 10px; // ドットをズラして重ねる
+    // }
+
+    // 文字を読みやすくするための黒いオーバーレイ（今の設定を活かす）
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(#000000, 1); // ここの色とドットが混ざる
+      z-index: 2; // ドットの上
+    }
+
+    // 文字を読みやすくするために、画像の上に薄い黒を重ねる
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(#201300, 0.2); // 0.4のところを調整して好みの暗さにしてみて
+    }
+  }
+
+  // 中身（文字）を浮かび上がらせる
+  .section-eyebrow,
+  .miso-quote,
+  .miso-body {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.miso-quote {
+  font-family: $font-ja;
+  font-size: clamp(1rem, 2.8vw, 1.45rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  color: $gold-light;
+  margin: 2rem 0 0;
+}
+
+.miso-rule {
+  width: 0;
+  height: 1px;
+  background: rgba($gold, 0.4);
+  margin: 2rem auto;
+  transform-origin: center;
+}
+
+.miso-body {
+  max-width: 54ch;
+  margin: 0 auto;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 2.3;
+  color: rgba($cream, 0.75);
+}
+
+// ------------------------------------------------------------
+//  ACCESS
+// ------------------------------------------------------------
+#access {
+  position: relative;
+  padding: 9rem 8vw;
+  max-width: 980px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+// #onsen {
+
+//   height: 88vh;
+//   min-height: 520px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   overflow: hidden;
+// }
+
+// .access-bg {
+//   position: absolute;
+//   inset: -25%;
+//   // SWAP: 自前の温泉画像パスに差し替え
+//   background-image: url('../images/04.jpg');
+//   background-size: cover;
+//   background-position: center;
+// }
+
+.access-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.access-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1rem;
+}
+
+.access-item {
+
+  border: solid 1px $gold;
+  padding: 10px 20px;
+
+  h4 {
+    font-family: $font-en;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: $gold;
+    margin-bottom: 0.8rem;
+  }
+
+  strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: $ink;
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    font-size: 0.86rem;
+    font-weight: 300;
+    line-height: 2.1;
+    color: $gray;
+  }
+}
+
+// ------------------------------------------------------------
+//  RESERVE CTA
+// ------------------------------------------------------------
+#reserve {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background: $cream;
+  padding: 8rem 2rem;
+  text-align: center;
+  border-top: 1px solid $gray-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; // 2. はみ出た背景を隠す
+
+  &::before {
+    content: ""; // 3. ★これが無いと表示されない！
+    position: absolute; // 4. 全面に広げるための設定
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-image: url(../images/04.jpg);
+    background-size: cover; // 5. 隙間なく敷き詰める
+    background-position: center;
+    backdrop-filter:
+      brightness(2) // ★明るさを1.5倍にする（1が標準）
+      contrast(0.2); // ★少しコントラストを下げると、ふんわり光る感じになる
+    z-index: 0;
+  }
+}
+
+.reserve-card {
+  width: 50vw;
+  height: auto;
+  border-radius: 50px;
+  border: solid 2px $gold-light;
+  padding: 50px;
+  background-color: rgba(white, 0.5);
+  backdrop-filter:
+    blur(20px) // ぼかし
+    brightness(1.5) // ★明るさを1.5倍にする（1が標準）
+    contrast(0.8); // ★少しコントラストを下げると、ふんわり光る感じになる
+
+  -webkit-backdrop-filter: blur(20px) brightness(1.5) contrast(0.8);
+}
+
+.reserve-en {
+  font-family: $font-en;
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 1rem;
+}
+
+.reserve-ja {
+  font-family: $font-ja;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  margin-bottom: 3rem;
+}
+
+.btn-reserve {
+  display: inline-block;
+  font-family: $font-en;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: $parchment;
+  background: $ink;
+  padding: 1rem 3.2rem;
+  border: 1px solid $ink;
+  transition: all 0.4s $ease;
+
+  &:hover {
+    background: transparent;
+    color: $ink;
+  }
+}
+
+// ------------------------------------------------------------
+//  FOOTER
+// ------------------------------------------------------------
+.site-footer {
+  background: $ink;
+  color: $gray;
+  padding: 5rem 8vw 2rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 4rem;
+}
+
+.footer-brand-name {
+  font-family: $font-ja;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $parchment;
+  letter-spacing: 0.18em;
+
+  width: 120px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.footer-brand-en {
+  font-family: $font-en;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-top: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-tagline {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 2.2;
+  color: $gray;
+}
+
+.footer-col-title {
+  font-family: $font-en;
+  font-size: 0.62rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 1.2rem;
+}
+
+.footer-col {
+
+  a,
+  p {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 2.5;
+    color: $gray;
+    transition: color 0.3s;
+  }
+
+  a:hover {
+    color: $parchment;
+  }
+}
+
+.footer-bottom {
+  background: $ink;
+  padding: 2rem 8vw;
+  // margin-top: 3rem;
+  border-top: 1px solid rgba(#fff, 0.07);
+  text-align: center;
+
+  p {
+    font-family: $font-en;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: rgba($gray, 0.6);
+  }
+}
